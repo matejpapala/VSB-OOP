@@ -10,15 +10,14 @@ private:
     Account **accounts;
     int accountsCount;
 
-    static double defaultInterestRate;
+    static int ObjectCount;
 public:
     Bank(int numberOfClients, int numberOfAccounts);
     ~Bank();
 
     Client* GetClient(int code);
     Account* GetAccount(int number);
-
-    static double getDefaultInterestRate() { return defaultInterestRate; }
+    static int getObjectCount() { return ObjectCount; }
 
     Client *CreateClient(int code, std::string name);
     Account *CreateAccount(int number, Client *owner);

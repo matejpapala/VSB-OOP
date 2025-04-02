@@ -29,6 +29,11 @@ void demoBank() {
 
     cout << "Interest rate for special acc: " << a3->GetInterestRate() << endl;
     cout << "Interest rate for normal acc: " << a1->GetInterestRate() << endl;
+
+    cout << "Number of clients: " << Client::getObjectCount() << endl;
+    cout << "Number of accounts: " << Account::getObjectCount() << endl;
+    cout << "Number of banks: " << Bank::getObjectCount() << endl;
+
 }
 
 int main() {

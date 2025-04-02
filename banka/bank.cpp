@@ -1,7 +1,9 @@
 #include "bank.h"
 using namespace std;
 
-double Bank::defaultInterestRate = 1.01;
+double Account::defaultInterestRate = 1.01;
+int Client::ObjectCount = 0;
+int Bank::ObjectCount = 0;
 
 Bank::Bank(int numberOfClients, int numberOfAccounts) {
     clients = new Client*[numberOfClients];
@@ -10,9 +12,11 @@ Bank::Bank(int numberOfClients, int numberOfAccounts) {
     accounts = new Account*[numberOfAccounts];
     accountsCount = 0;
 
+    Bank::ObjectCount += 1;
 }
 
 Bank::~Bank() {
+    Bank::ObjectCount--;
     for(int i = 0; i < clientsCount; i++) {
         delete clients[i];
     }
@@ -69,11 +73,11 @@ Account *Bank::CreateAccount(int number, Client *owner, Client *partner, double 
 
 void Bank::modifyInterestRate(double newRate) {
     for(int i = 0; i < accountsCount; i++) {
-        if(accounts[i]->GetInterestRate() == defaultInterestRate) {
+        if(accounts[i]->GetInterestRate() == Account::getDefaultInterestRate()) {
             accounts[i]->modifyInterestRate(newRate);
         }
     }
-    defaultInterestRate = newRate;
+     Account::setDefaultInterestRate(newRate);;
 }
 
 void Bank::addInterest() {
