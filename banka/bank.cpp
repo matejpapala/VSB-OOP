@@ -51,14 +51,14 @@ Client *Bank::CreateClient(int code, string name) {
     return clients[clientsCount++];
 }
 
-Account *Bank::CreateAccount(int number, Client *owner) {
+Account* Bank::CreateAccount(int number, Client *owner) {
     accounts[accountsCount] = new Account(number, owner);
     return accounts[accountsCount++];
 }
 
-Account *Bank::CreateAccount(int number, Client *owner, Client *partner) {
-    accounts[accountsCount] = new Account(number, owner, partner);
-    return accounts[accountsCount++];
+PartnerAccount *Bank::CreateAccount(int number, Client *owner, Client *partner) {
+    accounts[accountsCount] = new PartnerAccount(number, owner, partner);
+    return static_cast<PartnerAccount*>(accounts[accountsCount++]);
 }
 
 Account *Bank::CreateAccount(int number, Client *owner, double interestRate) {
@@ -66,9 +66,9 @@ Account *Bank::CreateAccount(int number, Client *owner, double interestRate) {
     return accounts[accountsCount++];
 }
 
-Account *Bank::CreateAccount(int number, Client *owner, Client *partner, double interestRate) {
-    accounts[accountsCount] = new Account(number, owner, partner, interestRate);
-    return accounts[accountsCount++];
+PartnerAccount *Bank::CreateAccount(int number, Client *owner, Client *partner, double interestRate) {
+    accounts[accountsCount] = new PartnerAccount(number, owner, partner, interestRate);
+    return static_cast<PartnerAccount*>(accounts[accountsCount++]);
 }
 
 void Bank::modifyInterestRate(double newRate) {

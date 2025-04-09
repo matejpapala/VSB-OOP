@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "client.h"
-#include "bank.h"
 
 class Account
 {
@@ -16,9 +15,8 @@ private:
     Client *partner;
 public:
     Account(int n, Client *c);
-    Account(int n, Client *c, Client *p);
     Account(int n, Client *c, double ir);
-    Account(int n, Client *c, Client *p, double ir);
+    ~Account();
 
     int GetNumber(){ return number; }
     double GetBalance(){ return balance; }

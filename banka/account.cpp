@@ -9,15 +9,7 @@ Account::Account(int n, Client *o) {
     balance = 0;
     interestRate = getDefaultInterestRate();
     owner  = o;
-    partner = NULL;
-}
-Account::Account(int n, Client *c, Client *p) {
-    Account::objectCount++;
-    number = n;
-    balance = 0;
-    interestRate = getDefaultInterestRate();
-    owner = c;
-    partner = p;
+    cout << "Account constructor called" << endl;
 }
 
 Account::Account(int n, Client *o, double ir) {
@@ -26,16 +18,12 @@ Account::Account(int n, Client *o, double ir) {
     balance = 0;
     interestRate = ir;
     owner = o;
-    partner = NULL;
+    cout << "Account constructor called" << endl;
 }
 
-Account::Account(int n, Client *o, Client *p, double ir) {
-    Account::objectCount++;
-    number = n;
-    balance = 0;
-    interestRate = ir;
-    owner = o;
-    partner = p;
+Account::~Account() {
+    Account::objectCount--;
+    cout << "Account destructor called" << endl;
 }
 
 void Account::Deposit(double amount) {

@@ -36,7 +36,38 @@ void demoBank() {
 
 }
 
+void demoInheritance() {
+    Account *a;
+    PartnerAccount *pa;
+    pa = new PartnerAccount(0, new Client(1, "Matej"), new Client(2, "Bob"));
+    a = pa;
+
+    cout << a->GetOwner()->getName() << endl;
+    //cout << a->GetPartner()->getName() << endl;
+
+    cout << pa->GetPartner()->getName() << endl;
+}
+
+
+void demoInheritanceBank() {
+    Account *a;
+    PartnerAccount *pa;
+
+    Bank *b = new Bank(100, 1000);
+    Client *o = b->CreateClient(1, "Matej");
+    Client *p = b->CreateClient(2, "Bob");
+    a = b->CreateAccount(0, o);
+    pa = b->CreateAccount(0, o, p);
+
+    cout << a->GetOwner()->getName() << endl;
+    cout << pa->GetPartner()->getName() << endl;
+
+    cout << b->GetClient(1)->getName() << endl;
+}
+
 int main() {
-    demoBank();
+    //demoBank();
+    // demoInheritance();
+    demoInheritanceBank();
     return 0;
 }

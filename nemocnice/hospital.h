@@ -2,12 +2,11 @@
 #include <iostream>
 #include "patient.h"
 #include "doctor.h"
+#include "hospitalChain.h"
 
-class Hospital {
+class Hospital : public HospitalChain
+{
 private:
-    Patient **patients;
-    int patientCount;
-
     Doctor **doctors;
     int doctorCount;
 
