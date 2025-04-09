@@ -63,6 +63,11 @@ void demoInheritanceBank() {
     cout << pa->GetPartner()->getName() << endl;
 
     cout << b->GetClient(1)->getName() << endl;
+
+    cout << "-----------------" << endl;
+
+    delete a;
+    delete pa;
 }
 
 int main() {
