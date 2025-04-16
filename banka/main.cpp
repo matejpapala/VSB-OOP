@@ -70,9 +70,26 @@ void demoInheritanceBank() {
     delete pa;
 }
 
+void demoProtected() {
+    Client *o = new Client(0, "Matej");
+
+    CreditAccount *ca = new CreditAccount(1, o, 1000);
+    cout << "Credit account can Withdraw:" << ca->canWithdraw(1000) << endl;
+
+    Account *a = ca;
+    cout << "Normal account can withdraw: " << a->canWithdraw(1000) << endl;
+
+    cout <<  "Credit account withdraw: " << ca->Withdraw(1000) << endl;
+
+    a = nullptr;
+    delete ca;
+}
+
+
 int main() {
     //demoBank();
     // demoInheritance();
-    demoInheritanceBank();
+    //demoInheritanceBank();
+    demoProtected();
     return 0;
 }

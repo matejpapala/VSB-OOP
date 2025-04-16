@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include "account.h"
 #include "partnerAccount.h"
+#include "creditAccount.h"
 
 class Account;
 class PartnerAccount;

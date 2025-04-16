@@ -6,13 +6,15 @@ class Account
 {
 private:
     int number;
-    double balance;
+    
     double interestRate;
     static double defaultInterestRate;
     static int objectCount;
 
     Client *owner;
     Client *partner;
+protected:
+    double balance;
 public:
     Account(int n, Client *c);
     Account(int n, Client *c, double ir);
@@ -25,11 +27,11 @@ public:
     static int getObjectCount(){ return objectCount; }
     Client *GetOwner(){ return owner; }
     Client *GetPartner(){ return partner; }
-    bool canWithdraw(double amount);
     static void setDefaultInterestRate(double newRate){ defaultInterestRate = newRate; }
 
     void Deposit(double amount);
-    void Withdraw(double amount);
+    bool canWithdraw(double amount);
+    bool Withdraw(double amount);
     void modifyInterestRate(double newRate);
     static void modifyDefaultInterestRate(double newRate);
     void AddInterest();

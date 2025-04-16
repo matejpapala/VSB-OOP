@@ -34,10 +34,15 @@ bool Account::canWithdraw(double amount) {
     return balance >= amount;
 }
 
-void Account::Withdraw(double amount) {
-    if(canWithdraw(amount)) {
-        balance -= amount;
+
+
+bool Account::Withdraw(double amount) {
+    bool succes = false;
+    if(this->canWithdraw(amount)) {
+        this->balance -= amount;
+        succes = true;
     }
+    return succes;
 }
 
 void Account::modifyInterestRate(double newRate) {

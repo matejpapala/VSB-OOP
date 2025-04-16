@@ -1,9 +1,10 @@
 #pragma once
 #include "patient.h"
+#include <string>
 
 class HospitalChain
 {
-private:
+protected:
     Patient **patients;
     int patientCount;
 public:
@@ -11,8 +12,8 @@ public:
     ~HospitalChain();
 
     Patient* GetPatient(int id);
-    int getPatientCount() { return patientCount; }
+    int getPatientCount();
 
-    Patient *AdmitPatient(int id, std::string name);
+    Patient* AdmitPatient(int id, std::string name);
     void DischargePatient(int id);
 };
