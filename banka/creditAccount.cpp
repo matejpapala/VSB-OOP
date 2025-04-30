@@ -10,15 +10,19 @@ CreditAccount::CreditAccount(int n, Client* c, double cred, double ir) : Account
     this->creditLimit = cred;
 }
 
+CreditAccount::~CreditAccount() {
+    cout << "Credit account destructor called" << endl;
+}
+
 bool CreditAccount::canWithdraw(double amount) {
     return(this->GetBalance() + this->creditLimit >= amount);
 }
 
-bool CreditAccount::Withdraw(double amount) {
-    bool succes = false;
-    if(this->canWithdraw(amount)) {
-        this->balance -= amount;
-        succes = true;
-    }
-    return succes;
-}
+// bool CreditAccount::Withdraw(double amount) {
+//     bool succes = false;
+//     if(this->canWithdraw(amount)) {
+//         this->balance -= amount;
+//         succes = true;
+//     }
+//     return succes;
+// }

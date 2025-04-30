@@ -18,7 +18,7 @@ protected:
 public:
     Account(int n, Client *c);
     Account(int n, Client *c, double ir);
-    ~Account();
+    virtual ~Account();
 
     int GetNumber(){ return number; }
     double GetBalance(){ return balance; }
@@ -30,7 +30,7 @@ public:
     static void setDefaultInterestRate(double newRate){ defaultInterestRate = newRate; }
 
     void Deposit(double amount);
-    bool canWithdraw(double amount);
+    virtual bool canWithdraw(double amount);
     bool Withdraw(double amount);
     void modifyInterestRate(double newRate);
     static void modifyDefaultInterestRate(double newRate);
