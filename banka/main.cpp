@@ -36,19 +36,6 @@ void demoBank() {
 
 }
 
-void demoInheritance() {
-    Account *a;
-    PartnerAccount *pa;
-    pa = new PartnerAccount(0, new Client(1, "Matej"), new Client(2, "Bob"));
-    a = pa;
-
-    cout << a->GetOwner()->getName() << endl;
-    //cout << a->GetPartner()->getName() << endl;
-
-    cout << pa->GetPartner()->getName() << endl;
-}
-
-
 void demoInheritanceBank() {
     Account *a;
     PartnerAccount *pa;
@@ -70,26 +57,21 @@ void demoInheritanceBank() {
     delete pa;
 }
 
-void demoProtected() {
-    Client *o = new Client(0, "Matej");
-
+void demoAbstract() {
+    Client *o = new Client(1, "Matej");
     CreditAccount *ca = new CreditAccount(1, o, 1000);
-    cout << "Credit account can Withdraw:" << ca->canWithdraw(1000) << endl;
 
-    Account *a = ca;
-    cout << "Normal account can withdraw: " << a->canWithdraw(1000) << endl;
+    AbstractAccount *aa = ca;
 
-    cout <<  "Credit account withdraw: " << ca->Withdraw(1000) << endl;
-
-    a = nullptr;
-    delete ca;
+    delete aa;
+    delete o;
 }
-
 
 int main() {
     //demoBank();
     // demoInheritance();
     //demoInheritanceBank();
-    demoProtected();
+    //demoProtected();
+    demoAbstract();
     return 0;
 }

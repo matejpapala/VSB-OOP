@@ -1,28 +1,40 @@
-# název překladače a přepínače
-CXX := g++
-CXXFLAGS := -std=c++11 -Wall -Wextra -pedantic -g
+# Compiler a jeho přepínače
+CXX       := g++
+CXXFLAGS  := -std=c++17 -Wall -Wextra -pedantic
 
-# seznam zdrojáků, objektových souborů a hlaviček
-SRCS := account.cpp bank.cpp creditAccount.cpp partnerAccount.cpp main.cpp
-OBJS := $(SRCS:.cpp=.o)
-DEPS := account.h bank.h client.h creditAccount.h partnerAccount.h
+# Jméno výsledného spustitelného souboru
+TARGET    := main
 
-# jméno výsledného spustitelného souboru
-TARGET := main
+# Všechna zdrojová .cpp
+SRC       := account.cpp        \
+             bank.cpp           \
+             creditAccount.cpp  \
+             partnerAccount.cpp \
+             main.cpp
 
-# výchozí cíl
+# Objektové soubory
+OBJ       := $(SRC:.cpp=.o)
+
+# Hlavičky, na které závisí všechny .o
+DEPS      := abstractAccount.h \
+             account.h         \
+             bank.h            \
+             client.h          \
+             creditAccount.h   \
+             partnerAccount.h
+
+.PHONY: all clean
+
 all: $(TARGET)
 
-# linkování
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
+# Link fáze
+$(TARGET): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# pravidlo pro překládání každého .cpp do .o
+# Překlad jednotlivých .cpp
+# Každý .o závisí na svém .cpp a na všech hlavičkách
 %.o: %.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# vyčištění pracovního adresáře
 clean:
-	rm -f $(OBJS) $(TARGET)
-
-.PHONY: all clean
+	rm -f $(OBJ) $(TARGET)

@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
 #include "client.h"
+#include "abstractAccount.h"
 
-class Account
+class Account : public AbstractAccount
 {
 private:
     int number;
