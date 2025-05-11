@@ -9,11 +9,12 @@ protected:
     int patientCount;
 public:
     HospitalChain(int numberOfPatients);
-    ~HospitalChain();
+    virtual ~HospitalChain() = 0;
 
-    Patient* GetPatient(int id);
+    virtual Patient* GetPatient(int id);
     int getPatientCount();
 
+    virtual void manage() = 0;
     Patient* AdmitPatient(int id, std::string name);
     void DischargePatient(int id);
 };

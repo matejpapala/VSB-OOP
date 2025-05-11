@@ -13,4 +13,5 @@ public:
     int getId() { return id; }
     std::string getName() { return name; }
     void treatPatient() { std::cout << "Doctor " << name << " is treating a patient." << std::endl; }
+    void treatPatient(int times) { std::cout << "Doctor " << name << " is treating a patient " << times << " times." << std::endl; }
 };

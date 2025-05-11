@@ -25,4 +25,10 @@ public:
     {
         std::cout << "SpecialHospital Info: ID = " << specialID << ", Department = " << specialDept << std::endl;
     }
+
+    void manage() override 
+    {
+        std::cout << "Special hospital managing " << getPatientCount() << " patients." << std::endl;
+        applyTreatment();
+    }
 };

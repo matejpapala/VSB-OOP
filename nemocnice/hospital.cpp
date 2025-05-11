@@ -23,12 +23,7 @@ Hospital::~Hospital() {
 }
 
 Patient* Hospital::GetPatient(int id) {
-    for (int i = 0; i < patientCount; i++) {
-        if (patients[i]->getId() == id) {
-            return patients[i];
-        }
-    }
-    return nullptr;
+    return HospitalChain::GetPatient(id);
 }
 
 Doctor* Hospital::GetDoctor(int id) {
@@ -61,4 +56,9 @@ void Hospital::applyTreatment() {
     for (int i = 0; i < doctorCount; i++) {
         doctors[i]->treatPatient();
     }
+}
+
+void Hospital::manage() {
+    cout << "Hospital managing " << getPatientCount() << " patients." << endl;
+    applyTreatment();
 }

@@ -15,7 +15,7 @@ public:
     Hospital(int numberOfPatients, int numberOfDoctors);
     ~Hospital();
 
-    Patient* GetPatient(int id);
+    Patient* GetPatient(int id) override;
     Doctor* GetDoctor(int id);
 
     static int getDefaultTreatmentLevel() { return defaultTreatmentLevel; }
@@ -23,6 +23,7 @@ public:
     Patient *AdmitPatient(int id, std::string name);
     Doctor *HireDoctor(int id, std::string name);
     
+    void manage() override;
     void upgradeTreatment(int level);
     void applyTreatment();
 };
