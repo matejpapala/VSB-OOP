@@ -1,60 +1,61 @@
 #include <iostream>
+#include "hospitalChain.h"
+#include "hospital.h"
 #include "specialHospital.h"
+#include "doctor.h"
+#include "patient.h"
 
 using namespace std;
 
 void demoHospital() {
-    std::cout << "Default treatment level: " << Hospital::getDefaultTreatmentLevel() << std::endl;
+    cout << "Default treatment level: " << Hospital::getDefaultTreatmentLevel() << endl;
+    cout << endl;
 
-    std::cout << std::endl;
-    // Vytvoreni instanci
-    HospitalChain* centers[2];
-    centers[0] = new Hospital(3, 2);
-    centers[1] = new SpecialHospital(2, 1, 101, "Oncology");
+    // Vytvoření instancí
+    Hospital* hosp = new Hospital(3, 2);
+    SpecialHospital* sh = new SpecialHospital(2, 1, 101, "Oncology");
+    HospitalChain* centers[2] = { hosp, sh };
 
-    std::cout << std::endl;
+    cout << endl;
+    // 3) Pacienti a doktoři
+    hosp->AdmitPatient(1, "Alice");
+    hosp->AdmitPatient(2, "Bob");
+    hosp->HireDoctor(10, "Dr. Smith");
+    hosp->HireDoctor(11, "Dr. Jones");
 
-    // 3) Patients and doctors
-    centers[0]->AdmitPatient(1, "Alice");
-    centers[0]->AdmitPatient(2, "Bob");
-    static_cast<Hospital*>(centers[0])->HireDoctor(10, "Dr. Smith");
-    static_cast<Hospital*>(centers[0])->HireDoctor(11, "Dr. Jones");
-    std::cout << std::endl;
+    cout << endl;
     // 4) Shadowing u GetPatient()
     Patient* p = centers[0]->GetPatient(1);
-    if (p) {
-        std::cout << "Found patient via shadowing: " << p->getName() << std::endl;
-    }
-    std::cout << std::endl;
-    // 5) Polymorfismus manage pres pole HospitalChain
-    for (auto c : centers) {
-        c->manage();
-    }
-    std::cout << std::endl;
-    // 6) Pretizeni metody treatPatient
-    Hospital* hosp = static_cast<Hospital*>(centers[0]);
+    if (p) cout << "Found patient via shadowing: " << p->getName() << endl;
+
+    cout << endl;
+    // 5) Polymorfismus manage přes pole HospitalChain
+    for (auto c : centers) c->manage();
+
+    cout << endl;
+    // 6) Přetížení metody treatPatient
     Doctor* d = hosp->GetDoctor(10);
     if (d) {
-        d->treatPatient();           // puvodni metoda
-        d->treatPatient(3);          // pretizena metoda
-    }
-    std::cout << std::endl;
-    // 7) Trida v roli objektu, upgrade vola metodu improveTreatment
-    std::cout << "Upgrading treatment by 2" << std::endl;
-    hosp->upgradeTreatment(2);
-    std::cout << "New default treatment level: " << Hospital::getDefaultTreatmentLevel() << std::endl;
-    p = hosp->GetPatient(2);
-    std::cout << "Patient " << p->getName() << " treatment level: " << p->getTreatmentLevel() << std::endl;
-    std::cout << std::endl;
-    // 8) SpecialHospital ma vlastni metodu nededenou z Hospital
-    SpecialHospital* sh = static_cast<SpecialHospital*>(centers[1]);
-    sh->printSpecialInfo();
-    std::cout << std::endl;
-    // 9) Pouklizeni po sobe
-    for (auto c : centers) {
-        delete c;
+        d->treatPatient();
+        d->treatPatient(3);
     }
 
+    cout << endl;
+    // 7) Upgrade léčby
+    cout << "Upgrading treatment by 2" << endl;
+    hosp->upgradeTreatment(2);
+    cout << "New default treatment level: " << Hospital::getDefaultTreatmentLevel() << endl;
+    p = hosp->GetPatient(2);
+    cout << "Patient " << p->getName() << " treatment level: " << p->getTreatmentLevel() << endl;
+
+    cout << endl;
+    // 8) SpecialHospital vlastní metoda
+    sh->printSpecialInfo();
+
+    cout << endl;
+    // 9) Úklid
+    delete hosp;
+    delete sh;
 }
 
 int main() {
