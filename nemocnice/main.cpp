@@ -49,7 +49,7 @@ void demoHospital() {
     cout << "Patient " << p->getName() << " treatment level: " << p->getTreatmentLevel() << endl;
 
     cout << endl;
-    // 8) SpecialHospital vlastní metoda
+    // 8) SpecialHospital print
     sh->printSpecialInfo();
 
     cout << endl;
