@@ -18,8 +18,8 @@ void demoHospital() {
 
     cout << endl;
     // 3) Pacienti a doktori
-    hosp->AdmitPatient(1, "Alice");
-    hosp->AdmitPatient(2, "Bob");
+    centers[0]->AdmitPatient(1, "Alice");
+    centers[0]->AdmitPatient(2, "Bob");
     hosp->HireDoctor(10, "Dr. Smith");
     hosp->HireDoctor(11, "Dr. Jones");
 
