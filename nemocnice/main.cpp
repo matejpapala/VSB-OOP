@@ -11,13 +11,13 @@ void demoHospital() {
     cout << "Default treatment level: " << Hospital::getDefaultTreatmentLevel() << endl;
     cout << endl;
 
-    // Vytvoření instancí
+    // Vytvorení instanci
     Hospital* hosp = new Hospital(3, 2);
     SpecialHospital* sh = new SpecialHospital(2, 1, 101, "Oncology");
     HospitalChain* centers[2] = { hosp, sh };
 
     cout << endl;
-    // 3) Pacienti a doktoři
+    // 3) Pacienti a doktori
     hosp->AdmitPatient(1, "Alice");
     hosp->AdmitPatient(2, "Bob");
     hosp->HireDoctor(10, "Dr. Smith");
@@ -33,7 +33,7 @@ void demoHospital() {
     for (auto c : centers) c->manage();
 
     cout << endl;
-    // 6) Přetížení metody treatPatient
+    // 6) Pretízení metody treatPatient
     Doctor* d = hosp->GetDoctor(10);
     if (d) {
         d->treatPatient();
@@ -41,7 +41,7 @@ void demoHospital() {
     }
 
     cout << endl;
-    // 7) Upgrade léčby
+    // 7) Upgrade lecby
     cout << "Upgrading treatment by 2" << endl;
     hosp->upgradeTreatment(2);
     cout << "New default treatment level: " << Hospital::getDefaultTreatmentLevel() << endl;
@@ -53,7 +53,7 @@ void demoHospital() {
     sh->printSpecialInfo();
 
     cout << endl;
-    // 9) Úklid
+    // 9) cleanup
     delete hosp;
     delete sh;
 }
